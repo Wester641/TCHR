@@ -21,4 +21,5 @@ body {
   max-width: 480px;
   border: 1px solid #ccc;
   margin: 0 auto;
+  box-sizing: border-box;
 }
