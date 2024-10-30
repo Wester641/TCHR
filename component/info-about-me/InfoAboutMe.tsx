@@ -1,10 +1,10 @@
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from 'next/image';
 
 interface InfoAboutMeProps {
   images?: string | StaticImageData;
 }
 
-function InfoAboutMe({ images = "/images/teach.png" }: InfoAboutMeProps) {
+function InfoAboutMe({ images = '/images/teach.png' }: InfoAboutMeProps) {
   return (
     <div className="flex flex-col relative p-[10px]  font-[family-name:var(--font-roboto-slab)] bg-[#E4E6E7] shadow-xl min-h-60 ">
       <div className="">
@@ -12,8 +12,11 @@ function InfoAboutMe({ images = "/images/teach.png" }: InfoAboutMeProps) {
         <div className="">English for kids</div>
       </div>
 
-      <div>
+      <div className=" border border-1  p-3">
         <Image
+
+
+
           className="mx-auto"
           src={images}
           alt="Vercel logomark"

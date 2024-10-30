@@ -1,27 +1,27 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 // import { Roboto_Slab } from "next/font/google";
-import localFont from "next/font/local";
-import "./globals.css";
+import localFont from 'next/font/local';
+import './globals.css';
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
 });
 const RobotoSlab = localFont({
-  src: "./fonts/Roboto_Slab/static/RobotoSlab-Medium.ttf",
-  variable: "--font-roboto-slab",
-  weight: "100 900",
+  src: './fonts/Roboto_Slab/static/RobotoSlab-Medium.ttf',
+  variable: '--font-roboto-slab',
+  weight: '100 900',
 });
 
 export const metadata: Metadata = {
-  title: "English for beginners",
-  description: "lesson lesson lesson",
+  title: 'English for beginners',
+  description: 'lesson lesson lesson',
 };
 
 export default function RootLayout({

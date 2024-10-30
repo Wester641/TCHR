@@ -1,6 +1,6 @@
-import NavButton from "@/component/button/nav-button";
-import InfoAboutMe from "@/component/info-about-me/InfoAboutMe";
-import kids from "../../public/kids.jpg";
+import NavButton from '@/component/button/nav-button';
+import InfoAboutMe from '@/component/info-about-me/InfoAboutMe';
+import kids from '../../public/kids.jpg';
 
 export default function About() {
   return (

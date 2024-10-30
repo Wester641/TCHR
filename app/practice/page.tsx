@@ -1,5 +1,5 @@
-import Image from "next/image";
-import NavButton from "@/component/button/nav-button";
+import Image from 'next/image';
+import NavButton from '@/component/button/nav-button';
 
 export default function Practice() {
   return (
