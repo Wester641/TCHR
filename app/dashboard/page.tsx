@@ -97,9 +97,17 @@ export default function Teacher() {
                 </motion.button>
               </div>
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
+                initial={{ scale: 0 }}
+                animate={{ rotate: 360, scale: 1 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20,
+                  duration: 0.8,
+                }}
+                // initial={{ opacity: 0, y: 50 }}
+                // animate={{ opacity: 1, y: 0 }}
+                // transition={{ delay: 0.6, duration: 0.8 }}
                 whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
                 className="flex justify-center min-w-[300px] min-h-[150px] rounded-full mx-auto backdrop-sepia bg-[#3c5571] shadow-md"
