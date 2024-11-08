@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -9,9 +10,9 @@ interface ButtonProps {
 
 export default function NavButton({ link, text, logo = true }: ButtonProps) {
   return (
-    <div>
+    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
       <Link
-        className="rounded-full shadow-2xl border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base px-4 sm:px-5 min-w-5"
+        className="rounded-full shadow-2xl border border-solid border-transparent transition-colors flex items-center justify-center bg-[#435468] text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base px-4 sm:px-5 min-w-5"
         href={link}
         rel="noopener noreferrer"
       >
@@ -26,6 +27,6 @@ export default function NavButton({ link, text, logo = true }: ButtonProps) {
         )}
         {text}
       </Link>
-    </div>
+    </motion.div>
   );
 }

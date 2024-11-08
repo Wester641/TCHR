@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #435468;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +19,6 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   max-width: 480px;
-  border: 1px solid #ccc;
   margin: 0 auto;
   box-sizing: border-box;
 }

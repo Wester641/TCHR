@@ -7,176 +7,209 @@ import Slider from '../../public/images/slider-circle-v-svgrepo-com.svg';
 import Edit from '../../public/images/edit-square-svgrepo-com.svg';
 import Earth from '../../public/images/earth-svgrepo-com.svg';
 import Eye from '../../public/images/eye-slash-svgrepo-com.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import AnimatedNav from '@/component/toolbar/AnimatedNav';
 
 export default function Teacher() {
   const [eyesIsOpen, setEyesIsOpen] = useState(false);
-  const [editIsOpen, setEditIsOpen] = useState(false);
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
-  const [earthIsOpen, setEarthIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   return (
-    <div className="">
-      <main className="min-h-screen bg-[#f9f3e7] gap-5 flex flex-col items-start justify-center font-[family-name:var(--font-roboto-slab)]">
-        <div className="px-6 rounded-xl w-full">
-          <h1 className="text-[2.6rem] font-bold text-[#38495c] mb-4 text-center">
-            English Teacher
-          </h1>
-          <div>
-            <div className="flex justify-between">
-              <button
-                className="w-10 h-10"
-                // className="flex z-50 flex-col justify-around relative py-2 bg-[#f9f3e7] items-center min-h-6 rounded-full px-2 min-w-[40px] shadow-lg hover:shadow-lg hover:opacity-90"
-                onClick={() => setEyesIsOpen(!eyesIsOpen)}
-              >
-                <Image
-                  src={Eye}
-                  alt="English Teacher"
-                  layout="intrinsic"
-                  className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
-                />
-                {eyesIsOpen && (
-                  <nav className="absolute  min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                    <ul className="flex flex-col justify-start items-start p-2 gap-2">
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        Service
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        About me
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        Contacts
-                      </li>
-                    </ul>
-                  </nav>
-                )}
-              </button>
-              <button
-                className="w-10 h-10"
-                onClick={() => setEditIsOpen(!editIsOpen)}
-              >
-                <Image
-                  src={Edit}
-                  alt="English Teacher"
-                  layout="intrinsic"
-                  className="rounded-full mx-auto"
-                />
-                {editIsOpen && (
-                  <nav className="absolute right-7 min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                    <ul className="flex flex-col justify-start items-start p-2 gap-2">
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        first
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        second
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        thirth
-                      </li>
-                    </ul>
-                  </nav>
-                )}
-              </button>
-            </div>
-            <Image
-              src={TeacherPhoto}
-              width={300}
-              height={150}
-              alt="English Teacher"
-              layout="intrinsic"
-              className="rounded-full border border-1 border-[#38495c] mx-auto bg-[#3c5571] shadow-md"
-            />
-            <div className="flex justify-between">
-              <button
-                className="w-10 h-10"
-                onClick={() => setSliderIsOpen(!sliderIsOpen)}
-              >
-                <Image
-                  src={Slider}
-                  alt="English Teacher"
-                  layout="intrinsic"
-                  className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
-                />
-                {sliderIsOpen && (
-                  <nav className="absolute  min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                    <ul className="flex flex-col justify-start items-start p-2 gap-2">
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        page
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        section
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        nav
-                      </li>
-                    </ul>
-                  </nav>
-                )}
-              </button>
-              <button
-                className="w-10 h-10"
-                onClick={() => setEarthIsOpen(!earthIsOpen)}
-              >
-                <Image
-                  src={Earth}
-                  alt="English Teacher"
-                  layout="intrinsic"
-                  className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
-                />
-                {earthIsOpen && (
-                  <nav className="absolute right-7 min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                    <ul className="flex flex-col justify-start items-start p-2 gap-2">
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        earth
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        north
-                      </li>
-                      <li className="hover:bg-[#435468bc] hover:shadow-lg hover:opacity-90">
-                        south
-                      </li>
-                    </ul>
-                  </nav>
-                )}
-              </button>
-            </div>
-          </div>
-          <div className="w-full ">
-            <ul className="text-gray-700 text-center">
-              <li className="text-4xl">Beginner Level</li>
-              <li className="text-[2.6rem] ">English Teacher</li>
-            </ul>
-          </div>
-          <div className="w-full">
-            <ul className="text-gray-700 text-center">
-              <li className="text-2xl">English Lesson</li>
-              <li className="text-3xl">Beginner Lesson</li>
-              <li className="text-[#38495c] text-xl ">eglish for kids</li>
-            </ul>
-          </div>
+    <motion.div variants={container}>
+      {loading ? (
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-l transition-all duration-300 from-gray-200 to-slate-200">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 1 }}
+            className="w-16 h-16 border-4 border-[#38495c] border-t-transparent border-solid rounded-full"
+          />
         </div>
-        <div className="flex mx-auto gap-5">
-          <div className="w-20 h-20 rounded-full border border-1 border-[#38495c] mx-auto bg-[#38495c] shadow-md overflow-hidden object-contain">
-            <Image
-              src={TeacherPhotoSmall}
-              alt="English Teacher"
-              layout="intrinsic"
-            />
+      ) : (
+        <main className="min-h-screen backdrop-sepia bg-gradient-to-l hover:bg-gradient-to-r transition-all duration-300 from-gray-200 to-slate-200 gap-5 flex flex-col items-start justify-center font-[family-name:var(--font-roboto-slab)] bg-opacity-50">
+          <div className="px-6 rounded-xl w-full">
+            <motion.h1
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-[2.6rem] font-bold text-[#38495c] mb-4 text-center"
+            >
+              English Teacher
+            </motion.h1>
+            <div>
+              <div className="flex justify-between">
+                <motion.button
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
+                  className="w-10 h-10"
+                  onClick={() => setEyesIsOpen(!eyesIsOpen)}
+                >
+                  <Image
+                    src={Eye}
+                    alt="English Teacher"
+                    layout="intrinsic"
+                    className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
+                  />
+                  {eyesIsOpen && (
+                    <motion.nav className="absolute z-9999 min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
+                      <AnimatedNav href={'#!'} />
+                    </motion.nav>
+                  )}
+                </motion.button>
+                <motion.button
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
+                  className="w-10 h-10"
+                >
+                  <Image
+                    src={Edit}
+                    alt="English Teacher"
+                    layout="intrinsic"
+                    className="rounded-full mx-auto"
+                  />
+                </motion.button>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
+                className="flex justify-center min-w-[300px] min-h-[150px] rounded-full mx-auto backdrop-sepia bg-[#3c5571] shadow-md"
+              >
+                <Image
+                  src={TeacherPhoto}
+                  width={300}
+                  height={150}
+                  alt="English Teacher"
+                  className="rounded-full w-full h-full"
+                />
+              </motion.div>
+              <div className="flex justify-between">
+                <motion.button
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
+                  className="w-10 h-10"
+                  onClick={() => setSliderIsOpen(!sliderIsOpen)}
+                >
+                  <Image
+                    src={Slider}
+                    alt="English Teacher"
+                    layout="intrinsic"
+                    className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
+                  />
+                  {sliderIsOpen && (
+                    <div className="absolute z-9999  min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
+                      <AnimatedNav href={'#!'} />
+                    </div>
+                  )}
+                </motion.button>
+                <motion.button
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
+                  className="w-10 h-10"
+                >
+                  <Image
+                    src={Earth}
+                    alt="English Teacher"
+                    layout="intrinsic"
+                    className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
+                  />
+                </motion.button>
+              </div>
+            </div>
+            <div className="w-full ">
+              <motion.ul
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.8 }}
+                className="text-gray-700 text-center"
+              >
+                <li className="text-4xl">Beginner Level</li>
+                <li className="text-[2.6rem] ">English Teacher</li>
+              </motion.ul>
+            </div>
+            <div className="w-full">
+              <motion.ul
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.7, duration: 0.8 }}
+                className="text-gray-700 text-center"
+              >
+                <li className="text-2xl">English Lesson</li>
+                <li className="text-3xl">Beginner Lesson</li>
+                <li className="text-[#38495c] text-xl ">eglish for kids</li>
+              </motion.ul>
+            </div>
           </div>
-          <div className="flex flex-col justify-center px-2 ">
-            <span className="text-3xl text-[#38495c] border-t-2 border-[#38495c] pt-2">
-              Testimonials
-            </span>
-            <span className=" text-[#38495c]">Beginner Lesson</span>
-          </div>
-        </div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.0, duration: 0.8 }}
+            className="flex mx-auto gap-5"
+          >
+            <div className="w-20 h-20 rounded-full border border-1 border-[#38495c] mx-auto bg-[#38495c] shadow-md overflow-hidden object-contain">
+              <Image
+                src={TeacherPhotoSmall}
+                alt="English Teacher"
+                layout="intrinsic"
+              />
+            </div>
+            <div className="flex flex-col justify-center px-2 ">
+              <span className="text-3xl text-[#38495c] border-t-2 border-[#38495c] pt-2">
+                Testimonials
+              </span>
+              <span className=" text-[#38495c]">Beginner Lesson</span>
+            </div>
+          </motion.div>
 
-        <button className="bg-[#38495c] text-white px-4 rounded-2xl mx-auto my-3 w-52 hover:shadow-md hover:opacity-90">
-          <Link href="/goverment" className="text-xl font-semibold">
-            Welcome me
-          </Link>
-        </button>
-      </main>
-    </div>
+          <motion.button
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.3, duration: 0.8 }}
+            whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+            whileTap={{ scale: 0.9, transition: { duration: 0.3 } }}
+            className="bg-[#38495c] text-white px-4 rounded-2xl mx-auto my-3 w-52 hover:shadow-md hover:opacity-90"
+          >
+            <Link href="/goverment" className="text-xl font-semibold">
+              Welcome me
+            </Link>
+          </motion.button>
+        </main>
+      )}
+    </motion.div>
   );
 }

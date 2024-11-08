@@ -43,7 +43,7 @@ export default function RootLayout({
           href="public/android/android-launchericon-512-512.png"
         />
 
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#435468" />
         <meta name="description" content="an English for beginners" />
       </head>
       <body
