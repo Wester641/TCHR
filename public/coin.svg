@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Монета -->
+  <circle cx="100" cy="100" r="80" fill="gold" stroke="goldenrod" stroke-width="5"/>
+  
+  <!-- Тень монеты -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="gray" stroke-width="10" opacity="0.3"/>
+  
+  <!-- Символ доллара, золотой с эффектом солнечного освещения -->
+  <text x="50%" y="50%" font-size="80" text-anchor="middle" fill="url(#gradient)" dy=".3em">$</text>
+  
+  <!-- Границы монеты -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="goldenrod" stroke-width="5" opacity="0.7"/>
+  
+  <!-- Блики на монете -->
+  <circle cx="130" cy="70" r="15" fill="white" opacity="0.3"/>
+  
+  <!-- Градиент для текста (золотой цвет) -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color: gold; stop-opacity: 1" />
+      <stop offset="100%" style="stop-color: yellow; stop-opacity: 0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Эффект солнечных лучей -->
+  <g stroke="yellow" stroke-width="2" opacity="0.5">
+    <line x1="100" y1="20" x2="100" y2="0" />
+    <line x1="100" y1="180" x2="100" y2="200" />
+    <line x1="20" y1="100" x2="0" y2="100" />
+    <line x1="180" y1="100" x2="200" y2="100" />
+    <line x1="50" y1="50" x2="0" y2="0" />
+    <line x1="150" y1="50" x2="200" y2="0" />
+    <line x1="50" y1="150" x2="0" y2="200" />
+    <line x1="150" y1="150" x2="200" y2="200" />
+  </g>
+</svg>

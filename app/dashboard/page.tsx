@@ -3,8 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import TeacherPhoto from '../../public/images/teach.png';
 import TeacherPhotoSmall from '../../public/images/teach2.png';
-import Slider from '../../public/images/slider-circle-v-svgrepo-com.svg';
+import Settings from '../../public/images/slider-circle-v-svgrepo-com.svg';
 import Edit from '../../public/images/edit-square-svgrepo-com.svg';
+import Coin from '../../public/coin.svg';
 import Earth from '../../public/images/earth-svgrepo-com.svg';
 import Eye from '../../public/images/eye-slash-svgrepo-com.svg';
 import { useEffect, useState } from 'react';
@@ -13,7 +14,8 @@ import AnimatedNav from '@/component/toolbar/AnimatedNav';
 
 export default function Teacher() {
   const [eyesIsOpen, setEyesIsOpen] = useState(false);
-  const [sliderIsOpen, setSliderIsOpen] = useState(false);
+  const [settingsIsOpen, setSettingsIsOpen] = useState(false);
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,6 +37,16 @@ export default function Teacher() {
       },
     },
   };
+
+  const counter = () => {
+    setCount(count + 1);
+  };
+
+  if (count === 100) {
+    alert(
+      "You've reached your daily limit. Please upgrade your plan to continue using our services.",
+    );
+  }
 
   return (
     <motion.div variants={container}>
@@ -105,6 +117,7 @@ export default function Teacher() {
                   damping: 20,
                   duration: 0.8,
                 }}
+                onClick={counter}
                 // initial={{ opacity: 0, y: 50 }}
                 // animate={{ opacity: 1, y: 0 }}
                 // transition={{ delay: 0.6, duration: 0.8 }}
@@ -128,17 +141,35 @@ export default function Teacher() {
                   whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
                   className="w-10 h-10"
-                  onClick={() => setSliderIsOpen(!sliderIsOpen)}
+                  onClick={() => setSettingsIsOpen(!settingsIsOpen)}
                 >
                   <Image
-                    src={Slider}
+                    src={Settings}
                     alt="English Teacher"
                     layout="intrinsic"
                     className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
                   />
-                  {sliderIsOpen && (
-                    <div className="absolute z-9999  min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                      <AnimatedNav href={'#!'} />
+                  {settingsIsOpen && (
+                    <div className="absolute  z-9999 p-2 min-w-[10rem] shadow-lg  rounded-md min-h-[5rem] bg-[#435468] border-2 border-[#dcdcdc]">
+                      <motion.div
+                        initial={{ x: '-100%' }}
+                        animate={{ x: 0 }}
+                        transition={{ type: 'spring', stiffness: 100 }}
+                      >
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="text-2xl">
+                            <Image
+                              src={Coin}
+                              alt="English Teacher"
+                              layout="intrinsic"
+                              width={50}
+                              height={50}
+                              className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
+                            />
+                          </span>
+                          <span className="text-4xl">{count}</span>
+                        </div>
+                      </motion.div>
                     </div>
                   )}
                 </motion.button>
