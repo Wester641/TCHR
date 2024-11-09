@@ -1,4 +1,3 @@
-// import NavButton from '@/component/button/nav-button'; TODO
 'use client';
 import Image from 'next/image';
 import TeacherPhotoSmall from '../../public/images/teach2.png';
@@ -6,11 +5,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import AnimatedNav from '@/component/toolbar/AnimatedNav';
+import Modal from '@/component/toolbar/modal';
 
 export default function About() {
   const [isOpen, setIsOpen] = useState(false);
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
   const router = useRouter();
 
   const handleGoBack = () => {
@@ -54,7 +52,7 @@ export default function About() {
               ></span>
               {isOpen && (
                 <div className="absolute right-[2.2rem] top-[2.2rem]  min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                  <AnimatedNav href={'#!'} />
+                  <Modal />
                 </div>
               )}
             </motion.button>
@@ -124,7 +122,6 @@ export default function About() {
             transition={{ delay: 0.1, duration: 0.7 }}
             className="text-start list-decimal"
           >
-            {/* <ol>Lorem ipsum dolor sit amet.</ol> */}
             <ol>
               Tailwind CSS is the only framework that Ive seen scale on large
               teams

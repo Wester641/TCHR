@@ -10,7 +10,7 @@ import Earth from '../../public/images/earth-svgrepo-com.svg';
 import Eye from '../../public/images/eye-slash-svgrepo-com.svg';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import AnimatedNav from '@/component/toolbar/AnimatedNav';
+import Modal from '@/component/toolbar/modal';
 
 export default function Teacher() {
   const [earthIsOpen, setEarthIsOpen] = useState(false);
@@ -118,10 +118,6 @@ export default function Teacher() {
                   duration: 0.8,
                 }}
                 onClick={increment}
-                // initial={{ opacity: 0, y: 50 }}
-                // animate={{ opacity: 1, y: 0 }}
-                // transition={{ delay: 0.6, duration: 0.8 }}
-
                 whileHover={{ scale: 1, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.7, transition: { duration: 1 } }}
                 className="flex justify-center min-w-[300px] min-h-[150px] rounded-full mx-auto backdrop-sepia bg-[#3c5571] shadow-md"
@@ -191,7 +187,7 @@ export default function Teacher() {
                   />
                   {earthIsOpen && (
                     <motion.nav className="absolute right-3 min-w-[10rem] shadow-lg rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                      <AnimatedNav href={'#!'} />
+                      <Modal />
                     </motion.nav>
                   )}
                 </motion.button>
