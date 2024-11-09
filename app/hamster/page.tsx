@@ -57,7 +57,12 @@ export default function Teacher() {
         <main className="min-h-screen backdrop-sepia  transition-all duration-300 bg-gradient-to-r from-indigo-900 via-pink-900 to-purple-900 gap-5 flex flex-col items-start justify-center bg-opacity-50">
           <div className="px-6 rounded-xl w-full">
             <div className="grid grid-cols-3 gap-2">
-              <div className=" bg-zinc-700 rounded-[8px] p-2">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className=" bg-zinc-700 rounded-[8px] p-2"
+              >
                 <div className="text-[12px] text-center text-orange-500 font-semibold">
                   Прибыль за тап
                 </div>
@@ -74,16 +79,26 @@ export default function Teacher() {
                   </span>
                   <span className="text-sm font-bold">+12</span>
                 </div>
-              </div>
-              <div className=" bg-zinc-700 rounded-[8px] p-2">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className=" bg-zinc-700 rounded-[8px] p-2"
+              >
                 <div className="text-[12px] text-center text-indigo-400 font-semibold">
                   Монет для холд
                 </div>
                 <div className="flex items-center justify-center gap-2 ">
                   <span className="text-sm font-semibold">50M</span>
                 </div>
-              </div>
-              <div className=" bg-zinc-700 rounded-[8px] p-2">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className=" bg-zinc-700 rounded-[8px] p-2"
+              >
                 <div className="text-[12px] text-center text-green-500 font-semibold">
                   Прибыль в час
                 </div>
@@ -100,7 +115,7 @@ export default function Teacher() {
                   </span>
                   <span className="text-sm font-semibold">+610,06K</span>
                 </div>
-              </div>
+              </motion.div>
             </div>
             <motion.div
               initial={{ x: '-50%' }}
@@ -154,7 +169,7 @@ export default function Teacher() {
           <motion.button
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.3, duration: 0.8 }}
+            transition={{ delay: 1.3, duration: 0.8 }}
             whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
             whileTap={{ scale: 0.9, transition: { duration: 0.3 } }}
             className="bg-gradient-to-r from-[#467825]  to-[#146acc] text-white px-4 py-1 rounded-2xl mx-auto my-4 w-52 hover:shadow-md hover:opacity-90"
