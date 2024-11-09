@@ -13,18 +13,15 @@ import { motion } from 'framer-motion';
 import AnimatedNav from '@/component/toolbar/AnimatedNav';
 
 export default function Teacher() {
-  const [eyesIsOpen, setEyesIsOpen] = useState(false);
+  const [earthIsOpen, setEarthIsOpen] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const storedCount = localStorage.getItem('count');
+      return storedCount ? JSON.parse(storedCount) : 0;
+    }
+  });
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -38,15 +35,21 @@ export default function Teacher() {
     },
   };
 
-  const counter = () => {
+  const increment = () => {
     setCount(count + 1);
   };
 
-  if (count === 100) {
-    alert(
-      "You've reached your daily limit. Please upgrade your plan to continue using our services.",
-    );
-  }
+  useEffect(() => {
+    localStorage.setItem('count', JSON.stringify(count));
+  }, [count]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <motion.div variants={container}>
@@ -78,7 +81,6 @@ export default function Teacher() {
                   whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
                   className="w-10 h-10"
-                  onClick={() => setEyesIsOpen(!eyesIsOpen)}
                 >
                   <Image
                     src={Eye}
@@ -86,11 +88,6 @@ export default function Teacher() {
                     layout="intrinsic"
                     className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
                   />
-                  {eyesIsOpen && (
-                    <motion.nav className="absolute z-9999 min-w-[10rem] shadow-lg  rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
-                      <AnimatedNav href={'#!'} />
-                    </motion.nav>
-                  )}
                 </motion.button>
                 <motion.button
                   initial={{ opacity: 0, x: 30 }}
@@ -110,19 +107,23 @@ export default function Teacher() {
               </div>
               <motion.div
                 initial={{ scale: 0 }}
-                animate={{ rotate: 360, scale: 1 }}
+                animate={{
+                  rotate: 360,
+                  scale: 1,
+                }}
                 transition={{
                   type: 'spring',
                   stiffness: 260,
                   damping: 20,
                   duration: 0.8,
                 }}
-                onClick={counter}
+                onClick={increment}
                 // initial={{ opacity: 0, y: 50 }}
                 // animate={{ opacity: 1, y: 0 }}
                 // transition={{ delay: 0.6, duration: 0.8 }}
-                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
+
+                whileHover={{ scale: 1, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.7, transition: { duration: 1 } }}
                 className="flex justify-center min-w-[300px] min-h-[150px] rounded-full mx-auto backdrop-sepia bg-[#3c5571] shadow-md"
               >
                 <Image
@@ -152,7 +153,7 @@ export default function Teacher() {
                   {settingsIsOpen && (
                     <div className="absolute  z-9999 p-2 min-w-[10rem] shadow-lg  rounded-md min-h-[5rem] bg-[#435468] border-2 border-[#dcdcdc]">
                       <motion.div
-                        initial={{ x: '-100%' }}
+                        initial={{ x: '-50%' }}
                         animate={{ x: 0 }}
                         transition={{ type: 'spring', stiffness: 100 }}
                       >
@@ -180,6 +181,7 @@ export default function Teacher() {
                   whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.9, transition: { duration: 0.2 } }}
                   className="w-10 h-10"
+                  onClick={() => setEarthIsOpen(!earthIsOpen)}
                 >
                   <Image
                     src={Earth}
@@ -187,6 +189,11 @@ export default function Teacher() {
                     layout="intrinsic"
                     className="rounded-full border border-1 border-[#38495c] mx-auto  shadow-md"
                   />
+                  {earthIsOpen && (
+                    <motion.nav className="absolute right-3 min-w-[10rem] shadow-lg rounded-md min-h-[13rem] bg-[#435468] border-2 border-[#dcdcdc]">
+                      <AnimatedNav href={'#!'} />
+                    </motion.nav>
+                  )}
                 </motion.button>
               </div>
             </div>
@@ -220,13 +227,18 @@ export default function Teacher() {
             transition={{ delay: 2.0, duration: 0.8 }}
             className="flex mx-auto gap-5"
           >
-            <div className="w-20 h-20 rounded-full border border-1 border-[#38495c] mx-auto bg-[#38495c] shadow-md overflow-hidden object-contain">
+            <motion.div
+              onClick={increment}
+              whileHover={{ scale: 1, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.7, transition: { duration: 1 } }}
+              className="w-20 h-20 rounded-full border border-1 border-[#38495c] mx-auto bg-[#38495c] shadow-md overflow-hidden object-contain"
+            >
               <Image
                 src={TeacherPhotoSmall}
                 alt="English Teacher"
                 layout="intrinsic"
               />
-            </div>
+            </motion.div>
             <div className="flex flex-col justify-center px-2 ">
               <span className="text-3xl text-[#38495c] border-t-2 border-[#38495c] pt-2">
                 Testimonials
