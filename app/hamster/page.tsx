@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import TeacherPhoto from '../../public/images/teach.png';
 import Coin from '../../public/coin.svg';
+import energyIcon from '../../public/energyicon.svg';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -13,6 +14,7 @@ export default function Teacher() {
       return storedCount ? JSON.parse(storedCount) : 0;
     }
   });
+  const [energy, setEnergy] = useState(1500);
   const [loading, setLoading] = useState(true);
 
   const container = {
@@ -29,6 +31,7 @@ export default function Teacher() {
 
   const increment = () => {
     setCount(count + 1);
+    setEnergy(energy - 1);
   };
 
   useEffect(() => {
@@ -43,6 +46,16 @@ export default function Teacher() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const energyTimeout = setTimeout(() => {
+      if (energy > count * 2) {
+        setEnergy((prevEnergy) => prevEnergy - 1);
+      }
+    }, 500);
+
+    return () => clearTimeout(energyTimeout);
+  }, [count, energy]);
+
   return (
     <motion.div variants={container}>
       {loading ? (
@@ -56,7 +69,7 @@ export default function Teacher() {
       ) : (
         <main className="min-h-screen backdrop-sepia  transition-all duration-300 bg-gradient-to-r from-indigo-900 via-pink-900 to-purple-900 gap-5 flex flex-col items-start justify-center bg-opacity-50">
           <div className="px-6 rounded-xl w-full">
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 mt-3">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -164,6 +177,25 @@ export default function Teacher() {
                 />
               </motion.div>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.3, duration: 0.8 }}
+              className="flex items-center justify-start mt-2"
+            >
+              <span className="text-xl">
+                <Image
+                  src={energyIcon}
+                  alt="English Teacher"
+                  layout="intrinsic"
+                  width={30}
+                  height={30}
+                  className="rounded-full mx-auto"
+                />
+              </span>
+              <span className="text-xl font-bold">{energy} / 1500</span>
+            </motion.div>
           </div>
 
           <motion.button
