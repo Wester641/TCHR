@@ -16,6 +16,7 @@ export default function Teacher() {
   });
   const [energy, setEnergy] = useState(1500);
   const [loading, setLoading] = useState(true);
+  const [premiumCheckbox, setPremiumCheckbox] = useState(false);
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -30,8 +31,8 @@ export default function Teacher() {
   };
 
   const increment = () => {
-    setCount(count + 1);
-    setEnergy(energy - 1);
+    setCount(premiumCheckbox ? count + 7 : count + 1);
+    setEnergy(premiumCheckbox ? energy - 2 : energy - 1);
   };
 
   useEffect(() => {
@@ -129,6 +130,26 @@ export default function Teacher() {
                   <span className="text-sm font-semibold">+610,06K</span>
                 </div>
               </motion.div>
+            </div>
+            <div className="flex justify-end w-full my-2">
+              <motion.label
+                htmlFor="checkboxPremium"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.3, duration: 0.8 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+                whileTap={{ scale: 0.9, transition: { duration: 0.3 } }}
+                className="flex items-center gap-1 justify-center font-semibold text-sm rounded-[8px] p-2 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500"
+              >
+                {premiumCheckbox ? 'Выкл' : 'Вкл'} премиум
+                <input
+                  type="checkbox"
+                  id="checkboxPremium"
+                  checked={premiumCheckbox}
+                  onChange={() => setPremiumCheckbox(!premiumCheckbox)}
+                  className="hidden"
+                />
+              </motion.label>
             </div>
             <motion.div
               initial={{ x: '-50%' }}
